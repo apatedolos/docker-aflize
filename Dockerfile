@@ -32,7 +32,7 @@ RUN \
         libtool-bin \
         bison \
         automake \
-        libglib2.0-dev
+        libglib2.0-dev \
         
 RUN wget 'http://lcamtuf.coredump.cx/afl/releases/afl-latest.tgz' -O- | tar zxvf - && cd afl-* && make PREFIX=/usr install
 
