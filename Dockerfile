@@ -11,7 +11,7 @@ RUN \
   apt-get install -y byobu curl git htop man unzip vim wget llvm libtool && \
   apt-get install -y gcc g++ ca-certificates procps tar gzip make gdb golang clang bison automake libglib2.0-dev && \
   rm -rf /var/lib/apt/lists/*
-  wget 'http://lcamtuf.coredump.cx/afl/releases/afl-latest.tgz' -O- | tar zxvf - && \
+RUN wget 'http://lcamtuf.coredump.cx/afl/releases/afl-latest.tgz' -O- | tar zxvf - && \
   cd afl-* && \
   make PREFIX=/usr install
 
