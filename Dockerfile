@@ -4,6 +4,7 @@ FROM ubuntu:14.04
 # Install.
 RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
+  add-apt-repository ppa:ubuntu-lxc/lxd-stable
   apt-get update --quiet && \
   apt-get -y upgrade && \
   apt-get install -y build-essential && \
