@@ -1,15 +1,39 @@
 # you can try replacing "debian:sid" with "debian:testing" or "ubuntu:latest".
 # For Ubuntu, replace -J with -j in the "aflize" script.
-FROM ubuntu:latest
-RUN echo 'deb http://archive.ubuntu.com/ubuntu/ xenial main' >> /etc/apt/sources.list
+FROM ubuntu:trusty
 
 # If you'd like to specify a list of packages to be built, uncomment the
 # following line by removing the # symbol at its beginning:
 # ADD ./packages.list /root/
 
-RUN echo 'APT::Install-Suggests "0";' > /etc/apt/apt.conf.d/no-suggests
-RUN echo 'APT::Install-Recommends "0";' > /etc/apt/apt.conf.d/no-recommends
-RUN apt-get update && apt-get install build-essential gcc g++ wget ca-certificates procps tar gzip make vim git gdb golang clang llvm libtool libtool-bin bison automake libglib2.0-dev -y
+RUN \
+    apt-get update \
+        --quiet \
+    && apt-get install \
+        --yes \
+        --no-install-recommends \
+        --no-install-suggests \
+        build-essential \
+        gcc \
+        g++ \
+        wget \
+        ca-certificates \
+        procps \
+        tar \
+        gzip \
+        make \
+        vim \
+        git \
+        gdb \
+        golang \
+        clang \
+        llvm \
+        libtool \
+        libtool-bin \
+        bison \
+        automake \
+        libglib2.0-dev
+        
 RUN wget 'http://lcamtuf.coredump.cx/afl/releases/afl-latest.tgz' -O- | tar zxvf - && cd afl-* && make PREFIX=/usr install
 
 # Make sure afl-gcc will be run. This forces us to set AFL_CC and AFL_CXX or
