@@ -8,7 +8,7 @@ RUN \
   apt-get -y upgrade && \
   apt-get install -y build-essential && \
   apt-get install -y software-properties-common && \
-  apt-get install -y byobu curl git htop man unzip vim wget llvm libtool libtool-bin && \
+  apt-get install -y byobu curl git htop man unzip vim wget llvm libtool && \
   apt-get install -y gcc g++ ca-certificates procps tar gzip make gdb golang clang bison automake libglib2.0-dev && \
 rm -rf /var/lib/apt/lists/*
 wget 'http://lcamtuf.coredump.cx/afl/releases/afl-latest.tgz' -O- | tar zxvf - && cd afl-* && make PREFIX=/usr install
