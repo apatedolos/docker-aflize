@@ -1,40 +1,17 @@
-# you can try replacing "debian:sid" with "debian:testing" or "ubuntu:latest".
-# For Ubuntu, replace -J with -j in the "aflize" script.
-FROM ubuntu:trusty
+# Pull base image.
+FROM ubuntu:14.04
 
-# If you'd like to specify a list of packages to be built, uncomment the
-# following line by removing the # symbol at its beginning:
-# ADD ./packages.list /root/
-
+# Install.
 RUN \
-    apt-get update \
-        --quiet \
-    && apt-get install \
-        --yes \
-        --no-install-recommends \
-        --no-install-suggests \
-        build-essential \
-        gcc \
-        g++ \
-        wget \
-        ca-certificates \
-        procps \
-        tar \
-        gzip \
-        make \
-        vim \
-        git \
-        gdb \
-        golang \
-        clang \
-        llvm \
-        libtool \
-        libtool-bin \
-        bison \
-        automake \
-        libglib2.0-dev \
-        
-RUN wget 'http://lcamtuf.coredump.cx/afl/releases/afl-latest.tgz' -O- | tar zxvf - && cd afl-* && make PREFIX=/usr install
+  sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
+  apt-get update --quiet && \
+  apt-get -y upgrade && \
+  apt-get install -y build-essential && \
+  apt-get install -y software-properties-common && \
+  apt-get install -y byobu curl git htop man unzip vim wget llvm libtool libtool-bin && \
+  apt-get install -y gcc g++ ca-certificates procps tar gzip make gdb golang clang bison automake libglib2.0-dev && \
+rm -rf /var/lib/apt/lists/*
+wget 'http://lcamtuf.coredump.cx/afl/releases/afl-latest.tgz' -O- | tar zxvf - && cd afl-* && make PREFIX=/usr install
 
 # Make sure afl-gcc will be run. This forces us to set AFL_CC and AFL_CXX or
 # otherwise afl-gcc will be trying to call itself by calling gcc.
