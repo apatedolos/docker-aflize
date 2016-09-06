@@ -4,12 +4,13 @@ FROM ubuntu:14.04
 # Install.
 RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
-  add-apt-repository ppa:ubuntu-lxc/lxd-stable
   apt-get update --quiet && \
   apt-get -y upgrade && \
   apt-get install -y build-essential && \
-  apt-get install -y software-properties-common && \
+  apt-get install -y software-properties-common python-software-properties && \
   apt-get install -y byobu curl git htop man unzip vim wget llvm libtool && \
+  add-apt-repository ppa:ubuntu-lxc/lxd-stable && \
+  apt-get update && \
   apt-get install -y gcc g++ ca-certificates procps tar gzip make gdb golang clang bison automake libglib2.0-dev && \
   rm -rf /var/lib/apt/lists/*
 RUN wget 'http://lcamtuf.coredump.cx/afl/releases/afl-latest.tgz' -O- | tar zxvf - && \
