@@ -40,8 +40,8 @@ RUN mkdir ~/pkg ~/pkgs ~/logs
 
 # install "Crashwalk" set path to exploitable.py
 
-#ADD ./crashwalk.sh /tmp/
-#RUN chmod +x /tmp/crashwalk.sh && /tmp/crashwalk.sh
+ADD ./crashwalk.sh /tmp/
+RUN chmod +x /tmp/crashwalk.sh && /tmp/crashwalk.sh
 
 #RUN mkdir ~/fuzz-results ~/pkgs-coverage
 #ADD ./testcases /root/testcases
