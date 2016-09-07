@@ -1,3 +1,4 @@
+ARG DEBIAN_FRONTEND=noninteractive
 # Pull base image.
 FROM ubuntu:14.04
 
