@@ -55,4 +55,4 @@ RUN echo "syntax on" >> /root/.vimrc
 
 #Setup qemu and llvm_mode
 ADD ./qemu-llvm.sh /tmp/
-#RUN chmod +x /tmp/qemu-llvm.sh && /tmp/qemu-llvm.sh
+RUN chmod +x /tmp/qemu-llvm.sh && /tmp/qemu-llvm.sh
