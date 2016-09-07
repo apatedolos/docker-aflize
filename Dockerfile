@@ -8,10 +8,10 @@ RUN \
   apt-get -y upgrade && \
   apt-get install -y build-essential && \
   apt-get install -y software-properties-common python-software-properties && \
-  apt-get install -y byobu curl git htop man unzip vim wget llvm libtool && \
+  apt-get install -y byobu curl git htop man unzip vim wget llvm libtool lcov && \
   add-apt-repository ppa:ubuntu-lxc/lxd-stable && \
   apt-get update && \
-  apt-get install -y gcc g++ ca-certificates procps tar gzip make gdb golang clang bison automake libglib2.0-dev && \
+  apt-get install -y gcc g++ ca-certificates procps tar gzip make gdb golang clang bison automake libglib2.0-dev python-setuptools && \
   rm -rf /var/lib/apt/lists/*
 RUN wget 'http://lcamtuf.coredump.cx/afl/releases/afl-latest.tgz' -O- | tar zxvf - && \
   cd afl-* && \
@@ -37,20 +37,12 @@ RUN chmod +x /tmp/install-preeny.sh && /tmp/install-preeny.sh
 
 RUN mkdir ~/pkg ~/pkgs ~/logs
 
-# This isn't really necessary, but it'd be a real convenience for me.
-RUN apt-get update && apt-get install apt-file -y && apt-file update
-
-# install "exploitable" GDB script
-RUN apt-get update && apt-get install gdb python-setuptools -y
-#RUN wget -O- 'https://github.com/jfoote/exploitable/archive/master.tar.gz' | tar zxvf - && cd exploitable-master && python setup.py install
-
 # install "Crashwalk" set path to exploitable.py
 
 ADD ./crashwalk.sh /tmp/
 RUN chmod +x /tmp/crashwalk.sh && /tmp/crashwalk.sh
 
 RUN mkdir ~/fuzz-results ~/pkgs-coverage
-RUN apt-get install lcov -y
 ADD ./testcases /root/testcases
 ADD ./fuzz-pkg-with-coverage.sh /root/
 RUN chmod +x /root/fuzz-pkg-with-coverage.sh
