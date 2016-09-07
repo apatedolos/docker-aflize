@@ -20,16 +20,16 @@ RUN wget 'http://lcamtuf.coredump.cx/afl/releases/afl-latest.tgz' -O- | tar zxvf
 
 # Make sure afl-gcc will be run. This forces us to set AFL_CC and AFL_CXX or
 # otherwise afl-gcc will be trying to call itself by calling gcc.
-#ADD ./afl-sh-profile /etc/profile.d/afl-sh-profile
-#RUN ln -s /etc/profile.d/afl-sh-profile /etc/profile.d/afl-sh-profile.sh
+ADD ./afl-sh-profile /etc/profile.d/afl-sh-profile
+RUN ln -s /etc/profile.d/afl-sh-profile /etc/profile.d/afl-sh-profile.sh
 
 # It looks like /etc/profile.d isn't read for some reason, but .bashrc is.
 # Let's include /etc/profile.d/afl-sh-profile from there.
-#RUN echo '. /etc/profile.d/afl-sh-profile' >> /root/.bashrc && chmod +x /root/.bashrc
+RUN echo '. /etc/profile.d/afl-sh-profile' >> /root/.bashrc && chmod +x /root/.bashrc
 
-#RUN chmod +x /etc/profile.d/afl-sh-profile
-#ADD ./setup-afl_cc /usr/bin/setup-afl_cc
-#RUN chmod +x /usr/bin/setup-afl_cc && /usr/bin/setup-afl_cc
+RUN chmod +x /etc/profile.d/afl-sh-profile
+ADD ./setup-afl_cc /usr/bin/setup-afl_cc
+RUN chmod +x /usr/bin/setup-afl_cc && /usr/bin/setup-afl_cc
 
 #ADD ./afl-fuzz-parallel /usr/bin/
 
