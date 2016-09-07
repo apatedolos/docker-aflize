@@ -7,5 +7,5 @@ make install
 
 #build qemu
 
-cd /afl-2.33b/qemu_mode/ && ./build_qemu_support.sh
+#cd /afl-2.33b/qemu_mode/ && ./build_qemu_support.sh
 
