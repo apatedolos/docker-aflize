@@ -50,9 +50,9 @@ RUN chmod +x /root/fuzz-pkg-with-coverage.sh
 ADD ./aflize /usr/bin/aflize
 
 # Add some of the settings I find it hard to live without.
-#RUN echo "alias ls='ls --color=auto'" >> /root/.bashrc
-#RUN echo "syntax on" >> /root/.vimrc
+RUN echo "alias ls='ls --color=auto'" >> /root/.bashrc
+RUN echo "syntax on" >> /root/.vimrc
 
 #Setup qemu and llvm_mode
-#ADD ./qemu-llvm.sh /tmp/
+ADD ./qemu-llvm.sh /tmp/
 #RUN chmod +x /tmp/qemu-llvm.sh && /tmp/qemu-llvm.sh
