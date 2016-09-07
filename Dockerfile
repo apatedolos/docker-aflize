@@ -31,12 +31,12 @@ RUN chmod +x /etc/profile.d/afl-sh-profile
 ADD ./setup-afl_cc /usr/bin/setup-afl_cc
 RUN chmod +x /usr/bin/setup-afl_cc && /usr/bin/setup-afl_cc
 
-#ADD ./afl-fuzz-parallel /usr/bin/
+ADD ./afl-fuzz-parallel /usr/bin/
 
-#ADD ./install-preeny.sh /tmp/
-#RUN chmod +x /tmp/install-preeny.sh && /tmp/install-preeny.sh
+ADD ./install-preeny.sh /tmp/
+RUN chmod +x /tmp/install-preeny.sh && /tmp/install-preeny.sh
 
-#RUN mkdir ~/pkg ~/pkgs ~/logs
+RUN mkdir ~/pkg ~/pkgs ~/logs
 
 # install "Crashwalk" set path to exploitable.py
 
