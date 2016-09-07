@@ -43,11 +43,11 @@ RUN mkdir ~/pkg ~/pkgs ~/logs
 ADD ./crashwalk.sh /tmp/
 RUN chmod +x /tmp/crashwalk.sh && /tmp/crashwalk.sh
 
-#RUN mkdir ~/fuzz-results ~/pkgs-coverage
-#ADD ./testcases /root/testcases
-#ADD ./fuzz-pkg-with-coverage.sh /root/
-#RUN chmod +x /root/fuzz-pkg-with-coverage.sh
-#ADD ./aflize /usr/bin/aflize
+RUN mkdir ~/fuzz-results ~/pkgs-coverage
+ADD ./testcases /root/testcases
+ADD ./fuzz-pkg-with-coverage.sh /root/
+RUN chmod +x /root/fuzz-pkg-with-coverage.sh
+ADD ./aflize /usr/bin/aflize
 
 # Add some of the settings I find it hard to live without.
 #RUN echo "alias ls='ls --color=auto'" >> /root/.bashrc
