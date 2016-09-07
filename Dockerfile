@@ -1,7 +1,7 @@
-ARG DEBIAN_FRONTEND=noninteractive
 # Pull base image.
 FROM ubuntu:14.04
-
+# set non persistant noninteractive session
+ARG DEBIAN_FRONTEND=noninteractive
 # Install.
 RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
