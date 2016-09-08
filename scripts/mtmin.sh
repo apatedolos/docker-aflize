@@ -28,7 +28,7 @@ do
         do
                 file=`ls -Sr $indir | sed $(expr $i + $f)"q;d"`
                 echo $file
-                /home/minty/apps/afl/afl-2.30b/afl-tmin -i $indir/$file -o $outdir/$file -- $bin &
+                afl-tmin -i $indir/$file -o $outdir/$file -- $bin &
         done
 
   wait
