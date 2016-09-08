@@ -21,7 +21,8 @@ RUN wget 'http://lcamtuf.coredump.cx/afl/releases/afl-latest.tgz' -O- | tar zxvf
   LLVM_CONFIG=llvm-config-3.4 make && \
   cd ../ && \
   make PREFIX=/usr install && \
-  cd qemu_mode/ && ./build_qemu_support.sh
+  cd qemu_mode/ && ./build_qemu_support.sh && \
+  cp /afl-*/afl-qemu-trace /usr/bin/
 
 # Make sure afl-gcc will be run. This forces us to set AFL_CC and AFL_CXX or
 # otherwise afl-gcc will be trying to call itself by calling gcc.
