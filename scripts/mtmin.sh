@@ -2,10 +2,10 @@
 
 # This script is used after running afl-cmin on corpus to minimise
 #cd <path to sync folder>
-#ls fuzz-master  fuzz-slave1 fuzz-slave2 fuzz-slave3
-#mkdir queue_all
-#cp fuzz-*/queue/* queue_all/
-#<path to afl root>afl-cmin -i queue_all/ -o queue_cmin -- ../tcpdump -nr @@
+#ls master  slave-1 slave-2 slave-3
+#mkdir queues
+#cp out-dir/*/queue/* queues
+#<path to afl root>afl-cmin -i queues/ -o queues_cmin -- ./binary
 
 proc=$1
 indir=$2
@@ -18,7 +18,7 @@ crashes=`ls $indir | wc -l`
 if [  $# -le 3 ]
 then
         echo "Usage: $0 numberofprocesses inputdirectory outputdirectory binary+commands"
-        echo 'Example Usage: '$0' 4 queue-cfmin queue-out "../tcpdump -nr @@"'
+        echo 'Example Usage: '$0' 4 queues_cmin queues_out "./binary"'
         exit 1
 fi
 
