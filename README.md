@@ -1,3 +1,3 @@
 # Docker-aflize
 
-Inspired by d33tah
+Inspired by work from Jacek Wielemborek, Michal Zalewski and Ben Nagy
