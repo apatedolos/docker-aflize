@@ -16,7 +16,7 @@ RUN \
   rm -rf /var/lib/apt/lists/*
 RUN wget 'http://lcamtuf.coredump.cx/afl/releases/afl-latest.tgz' -O- | tar zxvf - && \
   cd afl-* && \
-  make && \
+  make PREFIX=/usr install && \
   cd llvm_mode && \
   LLVM_CONFIG=llvm-config-3.4 make && \
   cd ../ && \
