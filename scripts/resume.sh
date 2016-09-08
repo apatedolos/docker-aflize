@@ -15,7 +15,7 @@ then
         exit 1
 fi
 
-screen -S master -d -m /usr/local/bin/afl-fuzz -i- -o $outdir -M master -- $bin 
+screen -S master -d -m afl-fuzz -i- -o $outdir -M master -- $bin 
 
 for ((i = 1; i <= $1; i++)); do
     screen -S slave-$i -d -m afl-fuzz -i- -o $outdir -S slave-$i -- $bin
