@@ -52,7 +52,7 @@ ADD ./crashwalk.sh /tmp/
 RUN chmod +x /tmp/crashwalk.sh && /tmp/crashwalk.sh
 
 RUN mkdir ~/fuzz-results ~/pkgs-coverage
-ADD ./scripts /afl-*/scripts/
+ADD ./scripts /afl-2.33b/scripts/
 ADD ./fuzz-pkg-with-coverage.sh /root/
 RUN chmod +x /root/fuzz-pkg-with-coverage.sh
 ADD ./aflize /usr/bin/aflize
