@@ -1,8 +1,8 @@
 #!/bin/bash
 
-cd /afl-2.33b/llvm_mode
+cd /afl-2.33b/llvm_mode && \
 LLVM_CONFIG=llvm-config-3.4 make
-cd ../
+cd ../ && \
 make install
 
 #build qemu
