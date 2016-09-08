@@ -17,10 +17,12 @@ RUN \
 RUN wget 'http://lcamtuf.coredump.cx/afl/releases/afl-latest.tgz' -O- | tar zxvf - && \
   cd afl-* && \
   make PREFIX=/usr install && \
+  # Setup LLVM
   cd llvm_mode && \
   LLVM_CONFIG=llvm-config-3.4 make && \
   cd ../ && \
   make PREFIX=/usr install && \
+  # Setup Qemu mode
   cd qemu_mode/ && ./build_qemu_support.sh && \
   cp /afl-*/afl-qemu-trace /usr/bin/
 
@@ -58,7 +60,3 @@ ADD ./aflize /usr/bin/aflize
 # Add some of the settings I find it hard to live without.
 RUN echo "alias ls='ls --color=auto'" >> /root/.bashrc
 RUN echo "syntax on" >> /root/.vimrc
-
-#Setup qemu and llvm_mode
-ADD ./qemu-llvm.sh /tmp/
-RUN chmod +x /tmp/qemu-llvm.sh && /tmp/qemu-llvm.sh
