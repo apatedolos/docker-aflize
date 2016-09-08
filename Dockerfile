@@ -15,7 +15,9 @@ RUN \
   apt-get install -y gcc g++ ca-certificates procps tar gzip make gdb golang clang bison automake libglib2.0-dev python-setuptools && \
   rm -rf /var/lib/apt/lists/*
 RUN wget 'http://lcamtuf.coredump.cx/afl/releases/afl-latest.tgz' -O- | tar zxvf - && \
-  cd afl-* && \
+  cd afl-*/llvm_mode && \
+  LLVM_CONFIG=llvm-config-3.4 make && \
+  cd ../ && \
   make PREFIX=/usr install
 
 # Make sure afl-gcc will be run. This forces us to set AFL_CC and AFL_CXX or
