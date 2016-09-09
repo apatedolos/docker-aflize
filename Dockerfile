@@ -17,12 +17,12 @@ RUN \
   # Setup AFL Latest
 RUN wget 'http://lcamtuf.coredump.cx/afl/releases/afl-latest.tgz' -O- | tar zxvf - && \
   cd afl-* && \
-  make install && \
+  PREFIX=/usr make install && \
   # Setup LLVM
   cd llvm_mode && \
   LLVM_CONFIG=llvm-config-3.4 make && \
   cd ../ && \
-  make install && \
+  PREFIX=/usr make install && \
   # Setup Qemu mode
   cd qemu_mode/ && ./build_qemu_support.sh && \
   cp /afl-*/afl-qemu-trace /usr/bin/
