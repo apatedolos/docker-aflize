@@ -17,12 +17,12 @@ RUN \
   # Setup AFL Latest
 RUN wget 'http://lcamtuf.coredump.cx/afl/releases/afl-latest.tgz' -O- | tar zxvf - && \
   cd afl-* && \
-  make PREFIX=/usr install && \
+  make install && \
   # Setup LLVM
   cd llvm_mode && \
   LLVM_CONFIG=llvm-config-3.4 make && \
   cd ../ && \
-  make PREFIX=/usr install && \
+  make install && \
   # Setup Qemu mode
   cd qemu_mode/ && ./build_qemu_support.sh && \
   cp /afl-*/afl-qemu-trace /usr/bin/
@@ -57,6 +57,7 @@ ADD ./scripts /afl-2.33b/scripts/
 ADD ./fuzz-pkg-with-coverage.sh /root/
 RUN chmod +x /root/fuzz-pkg-with-coverage.sh
 ADD ./aflize /usr/bin/aflize
+RUN chmod +x /usr/bin/aflize
 
 # Add some of the settings I find it hard to live without.
 RUN echo "alias ls='ls --color=auto'" >> /root/.bashrc
