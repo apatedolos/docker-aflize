@@ -9,7 +9,7 @@ RUN \
   apt-get -y upgrade && \
   apt-get install -y build-essential && \
   apt-get install -y software-properties-common python-software-properties && \
-  apt-get install -y byobu curl git htop man unzip vim wget llvm libtool lcov && \
+  apt-get install -y byobu curl git htop man unzip screen vim wget llvm libtool lcov && \
   add-apt-repository ppa:ubuntu-lxc/lxd-stable && \
   apt-get update && \
   apt-get install -y gcc g++ ca-certificates procps tar gzip make gdb golang clang bison automake libglib2.0-dev python-setuptools && \
